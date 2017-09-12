@@ -40,7 +40,7 @@ db.loadDatabase(err => {
 
     console.log("remove count", removeCount);
 
-    fs.readFile('./players.txt', 'utf8', (err, data) => {
+    fs.readFile('players.txt', 'utf8', (err, data) => {
       if (err) {
         throw err;
       }

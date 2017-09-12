@@ -66,6 +66,7 @@ db.loadDatabase(err => {
 
     fs.readFile('./team3.json', 'utf8', processTeam3File);
     fs.readFile('./team5.json', 'utf8', processTeam5File);
+  });
 });
 
 var app = express();

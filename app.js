@@ -18,7 +18,8 @@ const Datastore = require('nedb');
 const db = new Datastore({
     filename:
       // path.join('examples', 'step', 'data', 'players.db')
-      '/usr/src/app/node_modules/players.db'
+      // '/usr/src/app/node_modules/players.db'
+      './node_modules/players.db'
   , autoload: true
 });
 

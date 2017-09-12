@@ -40,20 +40,12 @@ db.loadDatabase(err => {
 
     console.log("remove count", removeCount);
 
-    fs.readFile('./players.txt', 'utf8', (err, data) => {
+    const processTeamDataFile = teamId => (err, data) => {
       if (err) {
         throw err;
       }
 
-      // console.log("data", data);
-
-      const playerDetails = JSON.parse(data);
-
-      const teamFiveDetails = {
-        team: '5',
-        players: playerDetails
-      }
-      // const playerPromises = [];
+      const teamDetails = JSON.parse(data);
 
       db.insert(teamFiveDetails, (err, results) => {
         if (err) {
@@ -64,39 +56,16 @@ db.loadDatabase(err => {
         const teamInfo = results;
 
         teamInfo.players.forEach(player => {
-          console.log("t5 player", player); 
+          console.log(teamId + " player", player); 
         });
       });    
-    });
+    };
 
-    fs.readFile('./team3.json', 'utf8', (err, data) => {
-      if (err) {
-        throw err;
-      }
-      // console.log("team data", data);
+    const processTeam3File = processTeamDataFile("t3");
+    const processTeam5File = processTeamDataFile("t5");
 
-      const teamDetails = JSON.parse(data);
-
-      console.log("team details", teamDetails);
-
-      db.insert(teamDetails, (err, results) => {
-        if (err) {
-          console.log("err", err);
-          return;
-        }
-
-        // console.log("inserted", results); 
-
-        const teamInfo = results;
-
-        teamInfo.players.forEach(player => {
-          console.log("t3 player", player); 
-        });
-      });    
-    });
-  });
-
-
+    fs.readFile('./team3.json', 'utf8', processTeam3File);
+    fs.readFile('./team5.json', 'utf8', processTeam5File);
 });
 
 var app = express();

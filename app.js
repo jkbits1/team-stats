@@ -47,7 +47,7 @@ db.loadDatabase(err => {
 
       const teamDetails = JSON.parse(data);
 
-      db.insert(teamFiveDetails, (err, results) => {
+      db.insert(teamDetails, (err, results) => {
         if (err) {
           console.log("err", err);
           return;

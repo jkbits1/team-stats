@@ -10,6 +10,10 @@ router.get('/:id', function(req, res, next) {
 
   console.log("team id", teamId);
 
+  console.error("body", req.body);
+  console.error("query", req.query);
+  console.error("params", req.params);
+
   if (db === undefined || db === null) {
     res.send('no db');
 

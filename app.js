@@ -92,6 +92,10 @@ app.use('/teams', teams);
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
+
+  console.log("not found", err);
+  console.error("not found", err);
+  
   next(err);
 });
 
